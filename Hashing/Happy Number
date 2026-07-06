@@ -1,0 +1,19 @@
+class Solution(object):
+    def isHappy(self, n):
+        visited = {n} 
+        while n!=1:
+            sum = 0
+            
+            for num in str(n): 
+                sum += int(num)**2
+
+            if sum in visited:
+                return False
+            visited.add(sum)
+            n = sum
+        return True
+        
+        
+
+        
+        
