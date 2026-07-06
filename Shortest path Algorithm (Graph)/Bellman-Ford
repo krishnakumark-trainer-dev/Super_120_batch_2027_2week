@@ -1,0 +1,19 @@
+class Solution:
+    def bellmanFord(self, V, edges, src):
+        
+        INF = 10**8
+        res = [INF]*V
+        res[src]= 0
+
+        for i in range(V-1):
+            flag = True
+            for u , v , w in edges:
+                if res[u]!=INF and res[u]+w < res[v]:
+                    res[v] = res[u]+w
+                    flag = False
+            if flag:
+                return res
+
+        for u, v, w in edges:
+            if res[u] != INF and res[u] + w < res[v]:
+                return  [-1]
