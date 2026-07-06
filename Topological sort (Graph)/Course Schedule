@@ -1,0 +1,28 @@
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+
+        adj = [[] for _ in range(numCourses)]
+
+        for u,v in prerequisites:
+            adj[u].append(v)
+
+        detect_cycle = set()
+        def dfs(cur):
+            if cur in detect_cycle:
+                return False
+            if adj[cur] == []:
+                return True
+            detect_cycle.add(cur)
+            for c in adj[cur]:
+                if dfs(c)== False:
+                    return False
+            adj[cur]= []
+            detect_cycle.remove(cur)
+            return True
+
+
+        for course in range(numCourses):
+            if dfs(course) == False:
+                return  False
+        
+        return True
