@@ -1,0 +1,27 @@
+import heapq
+
+
+class Solution:
+    def dijkstra(self, v, edges, src):
+
+        adj = [[] for _ in range(v)]
+        INF = 10**6
+        for u,e,w in edges:
+            adj[u].append((e,w))
+            adj[e].append((u,w))
+
+        res = [INF for i in range(v)]
+        res[src] = 0
+
+        pq = [(0,src)]
+
+        while pq:
+            d,cur = heapq.heappop(pq)
+            if d>res[cur]:
+                continue
+            for nei,w in adj[cur]:
+                if d+w < res[nei]:
+                    res[nei] = d+w
+                    heapq.heappush(pq,(res[nei],nei))
+        return res
+
