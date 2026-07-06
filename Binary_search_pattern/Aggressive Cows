@@ -1,0 +1,33 @@
+class Solution:
+    def aggressiveCows(self, stalls, k):
+        
+        stalls.sort()
+        
+        def check(distance):
+            last_p = stalls[0]
+            cow = 1
+            for s in range(1,len(stalls)):
+                if stalls[s]-last_p >= distance:
+                    cow+=1
+                    last_p = stalls[s]
+                    
+                    if cow == k:
+                        return True
+            
+            return False
+        
+        
+        
+        l = 1 
+        r = stalls[-1] - stalls[0]
+        ans = -1
+        while l<=r:
+            mid = (l+r)//2
+            if check(mid):
+                ans = mid
+                l = mid +1 
+            else:
+                r = mid - 1
+        return ans
+                
+        
