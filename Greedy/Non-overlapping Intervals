@@ -1,0 +1,15 @@
+class Solution(object):
+    def eraseOverlapIntervals(self, intervals):
+        intervals.sort()
+        prev = intervals[0][1]
+        count = 0
+        for  start , end  in intervals[1:]:
+            if  prev <= start:
+                prev = end
+            else:
+                count+=1 
+                prev = min(prev , end )
+        return count
+
+        
+        
