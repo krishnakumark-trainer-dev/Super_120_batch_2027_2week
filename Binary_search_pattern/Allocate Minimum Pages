@@ -1,0 +1,48 @@
+class Solution:
+    def findPages(self, books, students):
+        
+        if students > len(books):
+            return -1
+        
+        
+        def helper(max_book):
+            s_count = 1
+            cur_book = books[0]
+            
+            for book in books[1:]:
+                if cur_book + book <= max_book:
+                    cur_book = cur_book + book
+                
+                else:
+                    s_count+=1
+                    cur_book = book
+                    
+                    if s_count > students:
+                        return False
+            return True
+            
+  
+        
+        l = max(books)
+        r = sum(books)
+        ans = -1
+        while l <= r:
+            mid = (l+r)//2 
+            if helper(mid):
+                ans = mid
+                r = mid - 1
+            else:
+                l = mid+1 
+        
+        return ans
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
