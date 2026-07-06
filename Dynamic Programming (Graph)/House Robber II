@@ -1,0 +1,19 @@
+class Solution(object):
+    def rob(self, nums):
+        
+        def helper(nums):
+            r1 , r2 = 0 , 0
+
+            for i in nums:
+                temp = max ( i  + r1 , r2 )
+                r1=r2
+                r2=temp
+            
+            return r2
+        return max(nums[0], helper(nums[1:]) , helper(nums[:-1]))
+
+        
+
+
+        
+        
