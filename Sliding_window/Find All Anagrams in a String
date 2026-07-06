@@ -1,0 +1,25 @@
+class Solution(object):
+    def create_hash_map(self,temp):
+        hash_map = {}
+        for i in temp:
+            hash_map[i] = hash_map.get(i,0)+1 
+        return hash_map
+
+
+    def findAnagrams(self, s, p):
+        res = []
+        l = 0
+        
+        hash_map_p = self.create_hash_map(p)
+        hash_map_s = self.create_hash_map(s[0:len(p)-1])
+
+        for r in range(len(p)-1,len(s)):  
+            hash_map_s[s[r]] = hash_map_s.get(s[r],0)+1 
+            if hash_map_s == hash_map_p:
+                res.append(l)
+            hash_map_s[s[l]] -=1
+            if hash_map_s[s[l]] == 0:
+                hash_map_s.pop(s[l]) 
+            l+=1
+        return res
+        
