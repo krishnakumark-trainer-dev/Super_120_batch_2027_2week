@@ -1,0 +1,99 @@
+import heapq
+
+# ---------------------- MIN HEAP OPERATIONS ----------------------
+
+def create_min_heap(arr):
+    heapq.heapify(arr)
+    return arr
+
+def push_min(heap, value):
+    heapq.heappush(heap, value)
+
+def pop_min(heap):
+    return heapq.heappop(heap)
+
+def peek_min(heap):
+    return heap[0]
+
+def push_pop_min(heap, value):
+    return heapq.heappushpop(heap, value)
+
+def replace_min(heap, value):
+    return heapq.heapreplace(heap, value)
+
+def nsmallest_elements(arr, k):
+    return heapq.nsmallest(k, arr)
+
+def nlargest_elements(arr, k):
+    return heapq.nlargest(k, arr)
+
+# ---------------------- MAX HEAP OPERATIONS ----------------------
+
+def create_max_heap(arr):
+    heap = [-x for x in arr]
+    heapq.heapify(heap)
+    return heap
+
+def push_max(heap, value):
+    heapq.heappush(heap, -value)
+
+def pop_max(heap):
+    return -heapq.heappop(heap)
+
+def peek_max(heap):
+    return -heap[0]
+
+# ---------------------- HEAP SORT ----------------------
+
+def heap_sort(arr):
+    heap = arr[:]
+    heapq.heapify(heap)
+
+    ans = []
+
+    while heap:
+        ans.append(heapq.heappop(heap))
+
+    return ans
+
+# ---------------------- DRIVER CODE ----------------------
+
+arr = [10, 4, 8, 20, 1, 15]
+
+print("Original Array:", arr)
+
+# Min Heap
+min_heap = create_min_heap(arr.copy())
+print("\nMin Heap:", min_heap)
+
+push_min(min_heap, 2)
+print("After Push 2:", min_heap)
+
+print("Pop:", pop_min(min_heap))
+print("After Pop:", min_heap)
+
+print("Peek:", peek_min(min_heap))
+
+print("PushPop(5):", push_pop_min(min_heap, 5))
+print("After PushPop:", min_heap)
+
+print("Replace with 7:", replace_min(min_heap, 7))
+print("After Replace:", min_heap)
+
+print("3 Smallest:", nsmallest_elements(arr, 3))
+print("3 Largest:", nlargest_elements(arr, 3))
+
+# Max Heap
+max_heap = create_max_heap(arr.copy())
+print("\nMax Heap:", [-x for x in max_heap])
+
+push_max(max_heap, 25)
+print("After Push 25:", [-x for x in max_heap])
+
+print("Pop Max:", pop_max(max_heap))
+print("After Pop:", [-x for x in max_heap])
+
+print("Peek Max:", peek_max(max_heap))
+
+# Heap Sort
+print("\nHeap Sort:", heap_sort(arr))
