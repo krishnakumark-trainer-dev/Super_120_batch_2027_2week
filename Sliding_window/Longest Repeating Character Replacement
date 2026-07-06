@@ -1,0 +1,12 @@
+class Solution(object):
+    def characterReplacement(self, s, k):
+        hash_map = {}
+        l , temp,res = 0 ,0,0
+        for r in range(len(s)):
+            hash_map[s[r]]=hash_map.get(s[r],0)+1
+            temp = max(hash_map[s[r]],temp)
+            while  ((r-l)+1) - temp >k:
+                hash_map[s[l]]-=1
+                l+=1
+            res = max(res,(r-l)+1)
+        return res
