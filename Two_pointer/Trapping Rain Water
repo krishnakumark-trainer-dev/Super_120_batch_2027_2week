@@ -1,0 +1,20 @@
+class Solution(object):
+    def trap(self, height):
+       l = 0; r = len(height)-1
+
+       ml = height[0]
+       mr = height[-1]
+       res = 0
+       while l<r:
+
+            if height[l] < height[r]:
+                ml = max(ml,height[l])
+                res += ml - height[l]
+                l+=1
+            
+            else:
+                mr = max(mr,height[r])
+                res += mr - height[r]
+                r-=1 
+       return res
+
