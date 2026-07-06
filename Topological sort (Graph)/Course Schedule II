@@ -1,0 +1,35 @@
+
+class Solution(object):
+    def findOrder(self, numCourses, prerequisites):
+
+
+        adj = [[] for _ in range(numCourses)]
+        Course_count = [0]*numCourses
+
+        for u,v in prerequisites:
+            adj[v].append(u)
+            Course_count[u]+=1
+
+        queue = []
+        for i in range(numCourses):
+            if Course_count[i] == 0:
+                queue.append(i)
+                
+                
+        res = []
+        while queue:
+            cur = queue.pop(0)
+            res.append(cur)
+            if adj[cur] == []:
+                continue
+            
+            for nei in adj[cur]:
+                Course_count[nei]-=1
+                
+                if Course_count[nei] == 0:
+                    queue.append(nei)
+                
+        return res if len(res) == numCourses else []
+
+
+
