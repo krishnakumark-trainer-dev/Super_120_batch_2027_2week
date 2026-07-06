@@ -1,0 +1,39 @@
+class Solution(object):
+    def climbStairs(self, n):
+
+        def memoization(n):
+            if n<=2:
+                return n
+            if memo[n] != -1:
+                return memo[n]
+            memo[n]= memoization(n-1,memo)+memoization(n-2,memo)
+            return memo[n]
+        # memo = [-1] *(n+1)
+        # return memoization(n,memo)
+
+
+        def tabulation(n):
+            if  n<=2:
+                return n
+
+            dp = [0]*(n+1)
+            dp[1]=1
+            dp[2]=2
+            for i in range(3,n+1):
+                dp[i] = dp[i-1] + dp[i-2]
+            return dp[n]
+        return tabulation(n)
+
+
+
+        def space_opt(n):
+            if n<=2:
+                return n 
+            s1 = 1
+            s2 = 2 
+            for i in range(3,n+1):
+                res = s1+s2
+                s1=s2
+                s2 = res 
+            return res
+        # return space_opt(n)
