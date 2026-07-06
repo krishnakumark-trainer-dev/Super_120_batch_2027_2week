@@ -1,0 +1,29 @@
+class Solution(object):
+    def rob(self, nums):
+
+        r1 , r2 = 0 , 0
+        for i in nums:
+            temp = max( r1 + i , r2 )
+            r1 =r2
+            r2 = temp
+        return r2
+
+
+
+
+        # memo = {}
+        
+        # def rob_recursive(i):
+        #     if i < 0:
+        #         return 0
+        #     if i in memo:
+        #         return memo[i]
+            
+        #     max_money = max(rob_recursive(i - 2) + nums[i], rob_recursive(i - 1))
+            
+        #     memo[i] = max_money
+        #     return max_money
+        
+        # return rob_recursive(len(nums) - 1)
+
+        
